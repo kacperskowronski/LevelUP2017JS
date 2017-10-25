@@ -1,9 +1,8 @@
-var ContactUs = function ContactUs(){
-    this.URL = 'http://automationpractice.com/index.php?controller=contact';
-    this.subjectHeading = element(By.css('#id_contact'));
-    this.emailAddress = element(By.css('#email'));
-    this.orderRef = element(By.css('#id_order'));
-}
-//HomePage.prototype = Object.create(Object.prototype);
-//HomePage.prototype.constructor = Homepage;
-module.exports = ContactUs;
+var ContactUs = function ContactUs(){
+    this.URL = 'http://automationpractice.com/index.php?controller=contact';
+    this.customerServiceLabel = element(By.css("#center_column > h1"));
+    this.subjectHeadingDropdown = element(By.css("#uniform-id_contact > span"));
+    this.submitButton = element(By.css("#submitMessage"));
+    }
+    
+    module.exports = ContactUs; 
