@@ -1,14 +1,18 @@
 var HomePage = require(pageObjectDir + "/homePage.js");
 var WomenPage = require(pageObjectDir + "/womenPage.js");
 var TopsPage = require(pageObjectDir + "/topsPage.js");
-var ItemPage = require(pageObjectDir + "/itemPage.js");
+var ProductPage = require(pageObjectDir + "/productPage.js");
+var CartPage = require(pageObjectDir + "/cartPage.js");
 
 var homePage = new HomePage();
 var womenPage = new WomenPage();
 var topsPage = new TopsPage();
-var itemPage = new ItemPage();
+var productPage = new ProductPage();
+var cartPage = new CartPage();
+var EC = protractor.ExpectedConditions;
 
 describe('Automation Web flow', function () {
+
     it('Click Women button', function () {
         //browser.waitForAngularEnabled(false);
         browser.get(homePage.URL);
@@ -29,14 +33,29 @@ describe('Automation Web flow', function () {
     })
     it('check if the product description is displayed', function () {
         topsPage.productShirtOne.click();
-        expect(itemPage.categoryNameLabel.getText()).toContain("Faded Short");
+        expect(productPage.categoryNameLabel.getText()).toContain("Faded Short");
     })
-    it('should check length',function(){
-        itemPage.isDescriptionLongerThan(8).then(function(productDescription){
+    it('should check length', function () {
+        productPage.isDescriptionLongerThan(8).then(function (productDescription) {
             expect(productDescription).toBeTruthy();
-            });            
-    }); 
-    it('add a product in size M to the cart and check the cart', function(){
-        
+        })
     })
+
+    it('Click Add to cart button', function () {
+        productPage.addToCart.click();
+        browser.wait(EC.visibilityOf(productPage.headerTextInPopup), 5000)
+            .then(function () {
+                expect(productPage.headerTextInPopup.getText()).toEqual("Product successfully added to your shopping cart");
+            })
+    })
+    it('go to basket', function () {
+        productPage.buttonCart.click();
+        expect(cartPage.getTitleCart()).toEqual("Order - My Store");
+    });
+
+    it('check product name', function () {
+
+        expect(cartPage.getProductName()).toContain("Faded Short");
+    });
+
 })
