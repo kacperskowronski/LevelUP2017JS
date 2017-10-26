@@ -48,7 +48,7 @@ describe('Automation Web flow', function () {
                 expect(productPage.headerTextInPopup.getText()).toEqual("Product successfully added to your shopping cart");
             })
     })
-    it('go to basket', function () {
+    it('go to cart', function () {
         productPage.buttonCart.click();
         expect(cartPage.getTitleCart()).toEqual("Order - My Store");
     });
