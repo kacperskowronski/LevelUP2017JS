@@ -14,7 +14,6 @@ var EC = protractor.ExpectedConditions;
 describe('Automation Web flow', function () {
 
     it('Click Women button', function () {
-        //browser.waitForAngularEnabled(false);
         browser.get(homePage.URL);
         homePage.womenPageLink.click();
     });
@@ -42,6 +41,8 @@ describe('Automation Web flow', function () {
     })
 
     it('Click Add to cart button', function () {
+        productPage.selectSize.click();
+        productPage.sizeM.click();
         productPage.addToCart.click();
         browser.wait(EC.visibilityOf(productPage.headerTextInPopup), 5000)
             .then(function () {

@@ -40,11 +40,11 @@ beforeAll(function () {
 
 describe('Checking if all dresses opens and looks correctly', function () {
 
-    fit('Should Home Page be loaded', function () {
+    it('Should Home Page be loaded', function () {
         expect(browser.getTitle()).toEqual('My Store');
     });
 
-    fit('Should Dresses Page be loaded', function () {
+    it('Should Dresses Page be loaded', function () {
         homePage.clickDressesTabLink();
         expect(browser.getTitle()).toEqual('Dresses - My Store');
     });

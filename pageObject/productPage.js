@@ -38,28 +38,7 @@ ProductPage.prototype.getRichPopupText = function () {
         });
     });
 }
-ProductPage.prototype.addToCartAndCheck = function () {
-    var that = this;
-    var productDescription;
-    return new Promise(function (resolve) {
-        browser.wait(function () {
-            return that.prodDescrToComparison.getText()
-        }).then(function (text) {
-            productDescription = text;
-            console.log('productDescription: ' + productDescription);
-        })
-        that.selectSizeM.click();
-        that.addToCartButton.click().then(function () {
-            browser.wait(function () {
-                return that.prodInCartDescr.getText()
-            }).then(function (text) {
-                console.log(text);
-                resolve(descriptionProd == text);
-            })
-        });
-    })
 
-}
 
 
 module.exports = ProductPage; 
